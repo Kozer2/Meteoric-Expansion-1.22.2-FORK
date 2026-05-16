@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\commands",
+    "\\src\\config",
+    "\\src\\entities",
+    "\\src\\entity",
+    "\\src\\entity\\behavior",
+    "\\src\\systems",
+    "\\src\\systems\\Spawn System",
+    "\\src\\utility"
+  ],
+  "PreviewInSolutionExplorer": false
+}

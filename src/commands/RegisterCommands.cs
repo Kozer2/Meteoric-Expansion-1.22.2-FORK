@@ -25,15 +25,15 @@ namespace MeteoricExpansion
             {
                 EntityProperties entityType = api.World.GetEntityType(new AssetLocation("meteoricexpansion", "meteor-bismuthinite-andesite"));
                 EntityFallingMeteor entity = (EntityFallingMeteor)api.World.ClassRegistry.CreateEntity(entityType);
-                EntityPos entityPos = new EntityPos(player.Entity.ServerPos.X, api.WorldManager.MapSizeY - 10, player.Entity.ServerPos.Z);
+                EntityPos entityPos = new EntityPos(player.Entity.Pos.X, api.WorldManager.MapSizeY - 10, player.Entity.Pos.Z);
 
-                entity.ServerPos.SetPos(entityPos);
-                entity.Pos.SetFrom(entity.ServerPos);
+                entity.Pos.SetPos(entityPos);
+                entity.Pos.SetFrom(entity.Pos);
 
                 api.World.SpawnEntity(entity);
 
-                System.Diagnostics.Debug.WriteLine("Spawned at: " + entity.ServerPos);
-                System.Diagnostics.Debug.WriteLine("Player at: " + player.Entity.ServerPos);
+                System.Diagnostics.Debug.WriteLine("Spawned at: " + entity.Pos);
+                System.Diagnostics.Debug.WriteLine("Player at: " + player.Entity.Pos);
                 
             }, Privilege.controlserver);
             //-- Registers a command that will spawn a random meteor 10 blocks above the player --//
@@ -42,17 +42,17 @@ namespace MeteoricExpansion
             {
                 EntityProperties entityType = api.World.GetEntityType(new AssetLocation("meteoricexpansion", "showermeteor-" + args[0]));
                 EntityShowerMeteor entity = (EntityShowerMeteor)api.World.ClassRegistry.CreateEntity(entityType);
-                EntityPos entityPos = new EntityPos(player.Entity.ServerPos.X, api.WorldManager.MapSizeY - 10, player.Entity.ServerPos.Z);
+                EntityPos entityPos = new EntityPos(player.Entity.Pos.X, api.WorldManager.MapSizeY - 10, player.Entity.Pos.Z);
 
-                entity.ServerPos.SetPos(entityPos);
-                entity.Pos.SetFrom(entity.ServerPos);
+                entity.Pos.SetPos(entityPos);
+                entity.Pos.SetFrom(entity.Pos);
 
                 api.World.SpawnEntity(entity);
 
                 entity.GetBehavior<EntityBehaviorShowerMeteorMotion>().SetMeteorTranslation(new Vec2f(20, 20));
 
-                System.Diagnostics.Debug.WriteLine("Spawned at: " + entity.ServerPos);
-                System.Diagnostics.Debug.WriteLine("Player at: " + player.Entity.ServerPos);
+                System.Diagnostics.Debug.WriteLine("Spawned at: " + entity.Pos);
+                System.Diagnostics.Debug.WriteLine("Player at: " + player.Entity.Pos);
 
             }, Privilege.controlserver);
 
@@ -62,7 +62,7 @@ namespace MeteoricExpansion
                     IWorldAccessor world = player.Entity.World;
                     IBlockAccessor blockAccessor = world.GetBlockAccessorBulkUpdate(true, true);
 
-                    Vec3i centerPos = new Vec3i((int)player.Entity.ServerPos.X, (int)player.Entity.ServerPos.Y - 1, (int)player.Entity.ServerPos.Z);
+                    Vec3i centerPos = new Vec3i((int)player.Entity.Pos.X, (int)player.Entity.Pos.Y - 1, (int)player.Entity.Pos.Z);
                     //BlockPos blockPos = new BlockPos();
                     int craterRadius = 3;
 

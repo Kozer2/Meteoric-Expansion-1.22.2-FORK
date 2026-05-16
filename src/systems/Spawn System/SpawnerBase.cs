@@ -81,10 +81,10 @@ namespace MeteoricExpansion.Systems
             
             MeteorBase entity = ServerAPI.World.ClassRegistry.CreateEntity(entityType) as MeteorBase;
 
-            EntityPos entityPos = new EntityPos(ServerAPI.World.AllOnlinePlayers[playerToSpawnOn].Entity.ServerPos.X + GetSpawnOffset(), ServerAPI.WorldManager.MapSizeY, ServerAPI.World.AllOnlinePlayers[playerToSpawnOn].Entity.ServerPos.Z + GetSpawnOffset());
+            EntityPos entityPos = new EntityPos(ServerAPI.World.AllOnlinePlayers[playerToSpawnOn].Entity.Pos.X + GetSpawnOffset(), ServerAPI.WorldManager.MapSizeY, ServerAPI.World.AllOnlinePlayers[playerToSpawnOn].Entity.Pos.Z + GetSpawnOffset());
 
-            entity.ServerPos.SetPos(entityPos);
-            entity.Pos.SetFrom(entity.ServerPos);
+            entity.Pos.SetPos(entityPos);
+            entity.Pos.SetFrom(entity.Pos);
 
             return entity;
         }

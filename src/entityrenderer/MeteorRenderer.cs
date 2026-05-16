@@ -8,7 +8,7 @@ namespace MeteoricExpansion.EntityRenderers
     {
         public MeteorRenderer(Entity entity, ICoreClientAPI api) : base(entity, api)
         {
-            this.renderRange = 512;
+            //this.renderRange = 512;
         }
     }
 }

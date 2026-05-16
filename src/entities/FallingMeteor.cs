@@ -27,9 +27,9 @@ namespace MeteoricExpansion.Entities
                     //-- Fire, in this case, represents the meteor exploding in mid-air --//
                     this.Die(EnumDespawnReason.Death, new DamageSource() { Type = EnumDamageType.Fire });
                 }
-                else if(this.World.CollisionTester.IsColliding(this.World.BlockAccessor, this.CollisionBox, this.ServerPos.XYZ, false))
+                else if(this.World.CollisionTester.IsColliding(this.World.BlockAccessor, this.CollisionBox, this.Pos.XYZ, false))
                 {
-                    EnumBlockMaterial material = this.World.BlockAccessor.GetBlock(this.ServerPos.XYZ.AsBlockPos, BlockLayersAccess.SolidBlocks).BlockMaterial;
+                    EnumBlockMaterial material = this.World.BlockAccessor.GetBlock(this.Pos.XYZ.AsBlockPos, BlockLayersAccess.SolidBlocks).BlockMaterial;
 
                     //-- Don't kill the entity on plant matter, causing the meteor to explode. It just looks silly... --//
                     if(material != EnumBlockMaterial.Plant && material != EnumBlockMaterial.Wood && material != EnumBlockMaterial.Leaves && material != EnumBlockMaterial.Air)
