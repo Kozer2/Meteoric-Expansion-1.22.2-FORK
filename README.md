@@ -13,6 +13,8 @@ Original mod created by Taska Raine.
 
 This fork updates the mod for modern Vintage Story versions and .NET 10 compatibility while preserving the original gameplay and functionality.
 
+Porting assistance, debugging guidance, and API migration troubleshooting were performed with the help of AI-assisted tooling. All testing, validation, and final implementation decisions were performed manually.
+
 ### Description
 
 Hello, welcome to the mod repository for the Vintage Story mod, Meteoric Expansion!
@@ -39,7 +41,7 @@ Further config details can be found by opening the mod ZIP and reading the readm
 ### Releases
 
 ### Vintage Story 1.22.2+
-[Version 1.3.0](https://github.com/Kozer2/Meteoric-Expansion-1.22.2-FORK)
+[Version 1.3.0](https://github.com/Kozer2/Meteoric-Expansion-1.22.2-FORK/releases/tag/v1.3.0-vs1.22.2)
 
 ### Vintage Story 1.19.0+
 [Version 1.2.5](https://github.com/TaskaRaine/Meteoric-Expansion/releases/download/1.2.5/MeteoricExpansion_v1.2.5.zip)
