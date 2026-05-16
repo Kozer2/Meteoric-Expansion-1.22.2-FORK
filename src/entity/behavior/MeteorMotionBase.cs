@@ -41,8 +41,8 @@ namespace MeteoricExpansion.Entities.Behaviors
             VerticalSpeed.Min = attributes["verticalSpeed"]["min"].AsInt();
             VerticalSpeed.Max = attributes["verticalSpeed"]["max"].AsInt();
 
-            EntityTransforms = entity.ServerPos;
-            entity.Pos.SetFrom(entity.ServerPos);
+            EntityTransforms = entity.Pos;
+            entity.Pos.SetFrom(entity.Pos);
         }
         protected void InitializeRandomValues()
         {
@@ -52,8 +52,8 @@ namespace MeteoricExpansion.Entities.Behaviors
         {
             base.OnGameTick(deltaTime);
 
-            entity.ServerPos.SetFrom(EntityTransforms);
-            entity.Pos.SetFrom(entity.ServerPos);
+            entity.Pos.SetFrom(EntityTransforms);
+            entity.Pos.SetFrom(entity.Pos);
         }
         protected abstract void CalculateEntityTransforms(float deltaTime);
         protected abstract void InitializeMeteorParticles();

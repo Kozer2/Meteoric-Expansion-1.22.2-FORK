@@ -122,7 +122,7 @@ namespace MeteoricExpansion
 
                 if (serverAPI.World.Config.GetBool("Destructive") == true)
                 {
-                    InjureEntities(this.entity.ServerPos.XYZ);
+                    InjureEntities(this.entity.Pos.XYZ);
                 }
             }
         }
@@ -134,7 +134,7 @@ namespace MeteoricExpansion
 
                 //-- entity.PreviousServerPos is never set in VS 1.17 for some reason! Therefore, the direction vector is stored in an attribute on the entity and used instead of calculating it from currentPos - previousPos --//
 
-                Vec3d currentPos = this.entity.ServerPos.XYZ;
+                Vec3d currentPos = this.entity.Pos.XYZ;
 
                 Vec3i meteorDirectionInt = entity.Attributes.GetVec3i("direction", Vec3i.Zero);
                 Vec3d meteorDirection = new Vec3d(meteorDirectionInt.X, meteorDirectionInt.Y, meteorDirectionInt.Z).Normalize();
@@ -151,7 +151,7 @@ namespace MeteoricExpansion
                 foreach (BlockDropItemStack itemStack in entity.Properties.Drops)
                     for (int i = 0; i < (int)(entity.Properties.Client.Size * explosionRand.Next(minMeteorDrops, maxMeteorDrops)); i++)
                     {
-                        entity.World.SpawnItemEntity(itemStack.GetNextItemStack(), entity.ServerPos.XYZ, GetNewItemStackVector(shrapnelDirection, itemStackVelocityModifier));
+                        entity.World.SpawnItemEntity(itemStack.GetNextItemStack(), entity.Pos.XYZ, GetNewItemStackVector(shrapnelDirection, itemStackVelocityModifier));
                     }
             }
         }
@@ -163,7 +163,7 @@ namespace MeteoricExpansion
             
             blockAccessor = serverAPI.World.GetBlockAccessor(true, true, false);
 
-            Vec3i centerPos = this.entity.ServerPos.XYZInt;
+            Vec3i centerPos = this.entity.Pos.XYZInt;
 
             BlockPos craterPos = new BlockPos(0);
 
@@ -171,7 +171,7 @@ namespace MeteoricExpansion
             blockAccessor.SearchFluidBlocks(new BlockPos(centerPos.X - explosionRadius, centerPos.Y - explosionRadius, centerPos.Z - explosionRadius, 0), 
                 new BlockPos(centerPos.X + explosionRadius, centerPos.Y + explosionRadius, centerPos.Z + explosionRadius, 0), (block, bPos) =>
                 {
-                    if(block.BlockMaterial == EnumBlockMaterial.Liquid || block.BlockMaterial == EnumBlockMaterial.Lava)
+                    if(block.BlockMaterial == EnumBlockMaterial.Water || block.BlockMaterial == EnumBlockMaterial.Lava)
                     {
                         liquidAsset = new AssetLocation(block.Code.Domain, block.Code.Path);
 
@@ -232,7 +232,7 @@ namespace MeteoricExpansion
             switch(blockToExplode.BlockMaterial)
             {
                 case EnumBlockMaterial.Lava:
-                case EnumBlockMaterial.Liquid:
+                case EnumBlockMaterial.Water:
                 case EnumBlockMaterial.Air:
                 case EnumBlockMaterial.Mantle:
                 case EnumBlockMaterial.Meta:
@@ -289,7 +289,7 @@ namespace MeteoricExpansion
             injuryRadius = explosionRadius * 2;
             injuryDamageModifier = this.entity.Properties.Client.Size * injuryDamageModifier;
 
-            Entity[] affectedEntities = this.entity.World.GetEntitiesAround(this.entity.ServerPos.XYZ, injuryRadius, injuryRadius);
+            Entity[] affectedEntities = this.entity.World.GetEntitiesAround(this.entity.Pos.XYZ, injuryRadius, injuryRadius);
 
             if (affectedEntities.Length > 0)
             {
@@ -317,7 +317,7 @@ namespace MeteoricExpansion
             #region Quad Particle Options
             Vec3f quadVelocityRand = new Vec3f((float)(explosionRand.Next(0, 2) + explosionRand.NextDouble()), (float)(explosionRand.Next(0, 2) + explosionRand.NextDouble()), (float)(explosionRand.Next(0, 2) + explosionRand.NextDouble()));
 
-            quadExplosionParticles.MinPos = this.entity.ServerPos.XYZ + new Vec3d(-this.entity.Properties.Client.Size / 2, -this.entity.Properties.Client.Size / 2, -this.entity.Properties.Client.Size / 2);
+            quadExplosionParticles.MinPos = this.entity.Pos.XYZ + new Vec3d(-this.entity.Properties.Client.Size / 2, -this.entity.Properties.Client.Size / 2, -this.entity.Properties.Client.Size / 2);
             quadExplosionParticles.AddPos = new Vec3d(this.entity.Properties.Client.Size, this.entity.Properties.Client.Size, this.entity.Properties.Client.Size);
 
             quadExplosionParticles.MinVelocity = new Vec3f(-quadVelocityRand.X, -quadVelocityRand.Y, -quadVelocityRand.Z);
