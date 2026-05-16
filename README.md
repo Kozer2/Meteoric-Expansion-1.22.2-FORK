@@ -2,7 +2,7 @@
 
 The skies burn with balls of fire barrelling towards the planet at cosmic speeds....Is this the apocalypse?
 
-![Screenshot](resources/images/Meteor.png)
+![Screenshot](resources/images/Meteor2.png)
 
 
 ### Unofficial Vintage Story 1.22.2 / .NET 10 Compatibility Update
