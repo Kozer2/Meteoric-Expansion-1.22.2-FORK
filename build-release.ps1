@@ -2,7 +2,13 @@ $ErrorActionPreference = "Stop"
 
 $Repo = $PSScriptRoot
 $Stage = Join-Path $Repo "release"
-$Zip = Join-Path $Repo "meteoricexpansion_1.3.1-test.zip"
+$ModInfo = Get-Content (Join-Path $Repo "modinfo.json") | ConvertFrom-Json
+
+$Version = $ModInfo.version
+$ModId = $ModInfo.modid
+
+$Zip = Join-Path $Repo "$ModId`_$Version-test.zip"
+
 $DllOut = "C:\Projects\VintageStory\Mods\Debug\meteoricexpansion"
 
 Remove-Item $Stage -Recurse -Force -ErrorAction SilentlyContinue

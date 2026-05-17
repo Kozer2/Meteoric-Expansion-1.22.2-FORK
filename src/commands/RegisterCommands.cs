@@ -6,6 +6,8 @@ using Vintagestory.API.Common.Entities;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Server;
 using Vintagestory.GameContent;
+using System;
+using System.Collections.Generic;
 
 namespace MeteoricExpansion
 {
@@ -103,6 +105,112 @@ namespace MeteoricExpansion
                     blockAccessor.Commit();
                 }, Privilege.controlserver);
 
+
+            api.RegisterCommand("fallingskies", "Weaponizes the skies.", "[count]",
+            (IServerPlayer player, int groupId, CmdArgs args) =>
+            {
+                if (player == null)
+                {
+                    api.Logger.Error("[MeteoricExpansion] /fallingskies must be run by an in-game player.");
+                    return;
+                }
+
+                Random rand = new Random();
+
+                int count = 50;
+
+                if (args.Length > 0 && int.TryParse(args[0], out int parsedCount))
+                {
+                    count = Math.Clamp(parsedCount, 25, 100);
+                }
+
+                bool destructive = api.World.Config.GetBool("Destructive");
+
+                api.BroadcastMessageToAllGroups(
+                    "The skies begin to fall...",
+                    EnumChatType.Notification
+                );
+
+                int delay = 0;
+
+                for (int i = 0; i < count; i++)
+                {
+                    delay += rand.Next(250, 1001);
+
+                    api.Event.RegisterCallback((dt) =>
+                    {
+                        SpawnFallingSkiesMeteor(api, player, rand, destructive);
+                    }, delay);
+                }
+
+                api.Logger.Warning("[MeteoricExpansion] FallingSkies triggered by " + player.PlayerName + " count=" + count);
+
+            }, Privilege.controlserver);
+
+        }
+        private void SpawnFallingSkiesMeteor(ICoreServerAPI api, IServerPlayer player, Random rand, bool destructive)
+        {
+            if (player?.Entity == null)
+            {
+                return;
+            }
+
+            List<EntityProperties> meteorTypes = api.World.EntityTypes.FindAll(entity =>
+                entity.Code?.Domain == "meteoricexpansion" &&
+                entity.Class?.Contains("FallingMeteor") == true
+            );
+
+            if (meteorTypes == null || meteorTypes.Count == 0)
+            {
+                api.Logger.Warning("[MeteoricExpansion] FallingSkies found no meteor entity types.");
+                return;
+            }
+
+            EntityProperties entityType = meteorTypes[rand.Next(meteorTypes.Count)];
+
+            EntityFallingMeteor entity =
+                api.World.ClassRegistry.CreateEntity(entityType) as EntityFallingMeteor;
+
+            if (entity == null)
+            {
+                api.Logger.Warning("[MeteoricExpansion] FallingSkies failed to create entity: " + entityType.Code);
+                return;
+            }
+
+            double offsetX = rand.Next(1, 4) * (rand.Next(0, 2) == 0 ? -1 : 1);
+            double offsetZ = rand.Next(1, 4) * (rand.Next(0, 2) == 0 ? -1 : 1);
+
+            EntityPos entityPos = new EntityPos(
+                player.Entity.Pos.X + offsetX,
+                api.WorldManager.MapSizeY - 20,
+                player.Entity.Pos.Z + offsetZ
+            );
+
+            entity.Pos.SetPos(entityPos);
+            entity.Pos.SetFrom(entity.Pos);
+
+            float meteorSize = rand.Next(1, 7);
+
+            entity.WatchedAttributes.SetFloat("fallingSkiesSize", meteorSize);
+            entity.WatchedAttributes.SetFloat("size", meteorSize);
+            entity.WatchedAttributes.SetBool("fallingSkies", true);
+
+            if (destructive)
+            {
+                entity.WatchedAttributes.SetBool("fallingSkiesIgnoreClaims", true);
+                entity.WatchedAttributes.SetBool("fallingSkiesForceDestructive", true);
+            }
+
+            api.World.SpawnEntity(entity);
+
+            api.Logger.Warning(
+                "[MeteoricExpansion] FallingSkies spawned "
+                + entityType.Code
+                + " size="
+                + meteorSize
+                + " at "
+                + entity.Pos
+            );
         }
     }
 }

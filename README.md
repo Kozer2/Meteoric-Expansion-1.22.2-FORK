@@ -13,6 +13,65 @@ Original mod created by Taska Raine.
 
 This fork updates the mod for modern Vintage Story versions and .NET 10 compatibility while preserving the original gameplay and functionality.
 
+Additional improvements include:
+- Multiplayer compatibility fixes
+- Updated entity and asset loading for Vintage Story 1.22.2
+- Linux dedicated server packaging fixes
+- Improved build and release workflow
+- Debugging and test commands for meteor events
+
+### Debug / Admin Commands
+
+The following server commands are included for testing and events:
+
+#### `/fallingmeteor`
+Spawns a single meteor above the invoking player.
+
+#### `/showermeteor <type>`
+Spawns a shower meteor variant above the invoking player.
+
+#### `/testcrater`
+Creates a crater beneath the invoking player for terrain testing.
+
+#### `/fallingskies [count]`
+Triggers a large-scale meteor storm event.
+
+Features:
+- Spawns 25–100 meteors
+- Random meteor compositions
+- Random meteor sizes from 1–6
+- Randomized spawn timing
+- Dynamic impact locations around the player
+- Can bypass land claim protection when destructive meteors are enabled
+
+Example:
+```text
+/fallingskies 75
+```
+
+### Build Script
+
+A PowerShell build script is included to automate packaging and versioned release zip generation.
+
+Run:
+
+```powershell
+dotnet clean
+dotnet build
+powershell -ExecutionPolicy Bypass -File .\build-release.ps1
+```
+
+The script:
+- Builds the mod DLL
+- Reads the version automatically from `modinfo.json`
+- Packages all required assets and binaries
+- Generates a properly structured Vintage Story release zip
+
+Example output:
+```text
+meteoricexpansion_1.3.2.zip
+```
+
 Porting assistance, debugging guidance, and API migration troubleshooting were performed with the help of AI-assisted tooling. All testing, validation, and final implementation decisions were performed manually.
 
 ### Description

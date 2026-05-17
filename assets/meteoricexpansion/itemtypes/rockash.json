@@ -1,11 +1,10 @@
 ﻿{
 	"code": "rockash",
-	//"creativeinventory": {
-	//	"general": [ "*" ],
-	//	"items": [ "*" ],
-	//	"meteoricexpansion": [ "*" ]
-	//},
-	"creativeinventory": {},
+	"creativeinventory": {
+		"general": [ "*" ],
+		"items": [ "*" ],
+		"meteoricexpansion": [ "*" ]
+	},
 	"attributes": {
 		"fertilizerProps": {
 			"n": 30,
