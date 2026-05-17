@@ -1,10 +1,16 @@
 ﻿{
 	"code": "rockash",
+
 	"creativeinventory": {
 		"general": [ "*" ],
 		"items": [ "*" ],
 		"meteoricexpansion": [ "*" ]
 	},
+
+	"texture": {
+		"base": "meteoricexpansion:item/resource/rockash"
+	},
+
 	"attributes": {
 		"fertilizerProps": {
 			"n": 30,
@@ -14,6 +20,7 @@
 		"dissolveInWater": true,
 		"displaycaseable": true,
 		"shelvable": true,
+
 		"onDisplayTransform": {
 			"translation": {
 				"x": 0.05,
@@ -28,14 +35,12 @@
 			"scale": 0.65
 		}
 	},
-	"drawtype": "json",
-	"shape": { "base": "game:item/resource/crushed/saltpeter" },
-	"textures": {
-		"crushed": { "base": "meteoricexpansion:item/resource/rockash" }
-	},
+
 	"maxstacksize": 64,
 	"materialDensity": 30,
+
 	"heldTpIdleAnimation": "holdbothhands",
+
 	"guiTransform": {
 		"translation": {
 			"x": 3,
@@ -54,6 +59,7 @@
 		},
 		"scale": 2.54
 	},
+
 	"fpHandTransform": {
 		"rotation": {
 			"x": 54,
@@ -62,6 +68,7 @@
 		},
 		"scale": 1.35
 	},
+
 	"tpHandTransform": {
 		"translation": {
 			"x": -1.67,
@@ -75,6 +82,7 @@
 		},
 		"scale": 0.41
 	},
+
 	"groundTransform": {
 		"translation": {
 			"x": 0,

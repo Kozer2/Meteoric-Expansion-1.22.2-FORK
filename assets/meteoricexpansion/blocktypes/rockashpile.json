@@ -54,38 +54,38 @@
 			}
 		}
 	],
-	//"dropsByType": {
-	//	"*-small": [
-	//		{
-	//			"type": "item",
-	//			"code": "rockash",
-	//			"quantity": {
-	//				"avg": 2.0,
-	//				"var": 0.5
-	//			}
-	//		}
-	//	],
-	//	"*-medium": [
-	//		{
-	//			"type": "item",
-	//			"code": "rockash",
-	//			"quantity": {
-	//				"avg": 3.0,
-	//				"var": 1.0
-	//			}
-	//		}
-	//	],
-	//	"*-large": [
-	//		{
-	//			"type": "item",
-	//			"code": "rockash",
-	//			"quantity": {
-	//				"avg": 4.0,
-	//				"var": 2.0
-	//			}
-	//		}
-	//	]
-	//},
+	"dropsByType": {
+		"*-small": [
+			{
+				"type": "item",
+				"code": "rockash",
+				"quantity": {
+					"avg": 2.0,
+					"var": 0.5
+				}
+			}
+		],
+		"*-medium": [
+			{
+				"type": "item",
+				"code": "rockash",
+				"quantity": {
+					"avg": 3.0,
+					"var": 1.0
+				}
+			}
+		],
+		"*-large": [
+			{
+				"type": "item",
+				"code": "rockash",
+				"quantity": {
+					"avg": 4.0,
+					"var": 2.0
+				}
+			}
+		]
+	},
 	"materialDensity": 30,
 	"sounds": {
 		"break": "game:block/snow",
