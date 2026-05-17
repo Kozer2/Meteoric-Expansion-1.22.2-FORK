@@ -48,7 +48,7 @@ namespace MeteoricExpansion
 
                 EntityPos entityPos = new EntityPos(
                     player.Entity.Pos.X,
-                    api.WorldManager.MapSizeY - 10,
+                    api.WorldManager.MapSizeY - 6,
                     player.Entity.Pos.Z
                 );
 
@@ -66,7 +66,7 @@ namespace MeteoricExpansion
             {
                 EntityProperties entityType = api.World.GetEntityType(new AssetLocation("meteoricexpansion", "showermeteor-" + args[0]));
                 EntityShowerMeteor entity = (EntityShowerMeteor)api.World.ClassRegistry.CreateEntity(entityType);
-                EntityPos entityPos = new EntityPos(player.Entity.Pos.X, api.WorldManager.MapSizeY - 10, player.Entity.Pos.Z);
+                EntityPos entityPos = new EntityPos(player.Entity.Pos.X, api.WorldManager.MapSizeY - 6, player.Entity.Pos.Z);
 
                 entity.Pos.SetPos(entityPos);
                 entity.Pos.SetFrom(entity.Pos);
@@ -182,7 +182,7 @@ namespace MeteoricExpansion
 
             EntityPos entityPos = new EntityPos(
                 player.Entity.Pos.X + offsetX,
-                api.WorldManager.MapSizeY - 20,
+                api.WorldManager.MapSizeY - 6,
                 player.Entity.Pos.Z + offsetZ
             );
 
