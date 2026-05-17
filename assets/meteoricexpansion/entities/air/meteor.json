@@ -1,10 +1,16 @@
 ﻿{
-	code: "meteor",
-	variantgroups: [
-		{ code: "type", loadFromProperties: "game:block/ore-graded" },
-		{ code: "rock", loadFromProperties: "game:block/rockwithdeposit" }
+	"code": "meteor",
+	"variantgroups": [
+		{
+			"code": "type",
+			"loadFromProperties": "game:block/ore-graded"
+		},
+		{
+			"code": "rock",
+			"loadFromProperties": "game:block/rockwithdeposit"
+		}
 	],
-	allowedVariants: [
+	"allowedVariants": [
 		"meteor-bismuthinite-andesite",
 		"meteor-bismuthinite-granite",
 		"meteor-bismuthinite-basalt",
@@ -105,73 +111,193 @@
 		"meteor-galena_nativesilver-limestone",
 		"meteor-galena_nativesilver-claystone",
 		"meteor-galena_nativesilver-sandstone",
-		"meteor-galena_nativesilver-shale",
+		"meteor-galena_nativesilver-shale"
 	],
-	class: "EntityFallingMeteor",
-	habitat: "air",
-	hitboxSize: { x: 1, y: 1 },
-	client: {
-		renderer: "MeteorRenderer",
-		textures: {
+	"class": "EntityFallingMeteor",
+	"habitat": "air",
+	"hitboxSize": {
+		"x": 1,
+		"y": 1
+	},
+	"client": {
+		"renderer": "MeteorRenderer",
+		"textures": {
 			"core": {
-				base: "game:block/stone/rock/{rock}1",
-				overlays: [ "game:block/stone/ore/{type}1" ],
-				alternates: [
-					{base: "game:block/stone/rock/{rock}1", overlays: [ "game:block/stone/ore/{type}2" ]},
-					{base: "game:block/stone/rock/{rock}1", overlays: [ "game:block/stone/ore/{type}3" ]}
+				"base": "game:block/stone/rock/{rock}1",
+				"overlays": [
+					"game:block/stone/ore/{type}1"
+				],
+				"alternates": [
+					{
+						"base": "game:block/stone/rock/{rock}1",
+						"overlays": [
+							"game:block/stone/ore/{type}2"
+						]
+					},
+					{
+						"base": "game:block/stone/rock/{rock}1",
+						"overlays": [
+							"game:block/stone/ore/{type}3"
+						]
+					}
 				]
 			},
 			"rock": {
-				base: "game:block/stone/rock/{rock}1",
+				"base": "game:block/stone/rock/{rock}1"
 			}
 		},
-		glowlevel: 255,
-		shape: { base: "entity/meteor" },
-		size: 1,
-		behaviors: [
-		{ code: "interpolateposition" },
-		{ code: "FallingMeteorMotion",
-			horizontalSpeed: { min: 20, max: 50 },
-			verticalSpeed: { min: 2, max: 20 }
+		"glowlevel": 255,
+		"shape": {
+			"base": "entity/meteor"
 		},
-		{ code: "MeteorExplosion" },
-		],
-	},
-	server: {
-		behaviors: [
-		{ code: "despawn", minPlayerDistance: 256, minSeconds: 30 },
-		{ code: "FallingMeteorMotion",
-			horizontalSpeed: { min: 20, max: 50 },
-			verticalSpeed: { min: 2, max: 20 }
-		},
-		{ code: "MeteorExplosion" },
+		"size": 1,
+		"behaviors": [
+			{
+				"code": "interpolateposition"
+			},
+			{
+				"code": "FallingMeteorMotion",
+				"horizontalSpeed": {
+					"min": 20,
+					"max": 50
+				},
+				"verticalSpeed": {
+					"min": 2,
+					"max": 20
+				}
+			},
+			{
+				"code": "MeteorExplosion"
+			}
 		]
 	},
-	sounds: {
+	"server": {
+		"behaviors": [
+			{
+				"code": "despawn",
+				"minPlayerDistance": 256,
+				"minSeconds": 30
+			},
+			{
+				"code": "FallingMeteorMotion",
+				"horizontalSpeed": {
+					"min": 20,
+					"max": 50
+				},
+				"verticalSpeed": {
+					"min": 2,
+					"max": 20
+				}
+			},
+			{
+				"code": "MeteorExplosion"
+			}
+		]
 	},
-	attributes: {
-		"sizeVariance":  1.0
+	"sounds": {},
+	"attributes": {
+		"sizeVariance": 1.0
 	},
-	dropsByType: {
+	"dropsByType": {
 		"*-quartz_nativegold-*": [
-			{type: "item", code: "game:stone-{rock}", quantity: { avg: 1, var: 0, dist: "gaussian" }},
-			{type: "item", code: "game:metalbit-gold", quantity: { avg: 1, var: 0, dist: "gaussian" }},
+			{
+				"type": "item",
+				"code": "game:stone-{rock}",
+				"quantity": {
+					"avg": 1,
+					"var": 0,
+					"dist": "gaussian"
+				}
+			},
+			{
+				"type": "item",
+				"code": "game:metalbit-gold",
+				"quantity": {
+					"avg": 1,
+					"var": 0,
+					"dist": "gaussian"
+				}
+			}
 		],
 		"*-quartz_nativesilver-*": [
-			{type: "item", code: "game:stone-{rock}", quantity: { avg: 1, var: 0, dist: "gaussian" }},
-			{type: "item", code: "game:metalbit-silver", quantity: { avg: 1, var: 0, dist: "gaussian" }},
+			{
+				"type": "item",
+				"code": "game:stone-{rock}",
+				"quantity": {
+					"avg": 1,
+					"var": 0,
+					"dist": "gaussian"
+				}
+			},
+			{
+				"type": "item",
+				"code": "game:metalbit-silver",
+				"quantity": {
+					"avg": 1,
+					"var": 0,
+					"dist": "gaussian"
+				}
+			}
 		],
 		"*-galena_nativesilver-*": [
-			{type: "item", code: "game:stone-{rock}", quantity: { avg: 1, var: 0, dist: "gaussian" }},
-			{type: "item", code: "game:metalbit-silver", quantity: { avg: 1, var: 0, dist: "gaussian" }},
+			{
+				"type": "item",
+				"code": "game:stone-{rock}",
+				"quantity": {
+					"avg": 1,
+					"var": 0,
+					"dist": "gaussian"
+				}
+			},
+			{
+				"type": "item",
+				"code": "game:metalbit-silver",
+				"quantity": {
+					"avg": 1,
+					"var": 0,
+					"dist": "gaussian"
+				}
+			}
 		],
 		"*-quartz_nativeplatinum-*": [
-			{type: "item", code: "game:stone-{rock}", quantity: { avg: 1, var: 0, dist: "gaussian" }},
-			{type: "item", code: "game:metalbit-platinum", quantity: { avg: 1, var: 0, dist: "gaussian" }},
+			{
+				"type": "item",
+				"code": "game:stone-{rock}",
+				"quantity": {
+					"avg": 1,
+					"var": 0,
+					"dist": "gaussian"
+				}
+			},
+			{
+				"type": "item",
+				"code": "game:metalbit-platinum",
+				"quantity": {
+					"avg": 1,
+					"var": 0,
+					"dist": "gaussian"
+				}
+			}
 		],
 		"*": [
-			{type: "item", code: "game:stone-{rock}", quantity: { avg: 1, var: 0, dist: "gaussian" }},
-			{type: "item", code: "game:nugget-{type}", quantity: { avg: 1, var: 0, dist: "gaussian" }},
+			{
+				"type": "item",
+				"code": "game:stone-{rock}",
+				"quantity": {
+					"avg": 1,
+					"var": 0,
+					"dist": "gaussian"
+				}
+			},
+			{
+				"type": "item",
+				"code": "game:nugget-{type}",
+				"quantity": {
+					"avg": 1,
+					"var": 0,
+					"dist": "gaussian"
+				}
+			}
 		]
 	}
 }

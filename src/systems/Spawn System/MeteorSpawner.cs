@@ -18,9 +18,76 @@ namespace MeteoricExpansion.Systems
         protected override double NextSpawn { get; set; }
         private bool ConfigDisableFallingMeteors { get; set; }
 
+        //public override bool ShouldLoad(EnumAppSide side)
+        //{
+        //    return side == EnumAppSide.Server;
+        //}
+
         public override void StartServerSide(ICoreServerAPI api)
         {
             base.StartServerSide(api);
+
+
+            api.Logger.Warning("========== METEORIC EXPANSION DEBUG ==========");
+
+            api.Logger.Warning(
+                "[MeteoricExpansion DEBUG] Mod path root loaded."
+            );
+
+            var dllDir = System.IO.Path.GetDirectoryName(typeof(RegisterCommands).Assembly.Location);
+
+            foreach (var path in System.IO.Directory.GetFileSystemEntries(dllDir))
+            {
+                api.Logger.Warning("[MeteoricExpansion DEBUG] unpack entry: " + path);
+            }
+            api.Logger.Warning("[MeteoricExpansion DEBUG] dllDir: " + dllDir);
+
+            var physicalAsset = System.IO.Path.Combine(dllDir, "assets", "meteoricexpansion", "entities", "air", "meteor.json");
+            api.Logger.Warning("[MeteoricExpansion DEBUG] physical meteor file exists: " + System.IO.File.Exists(physicalAsset));
+
+            string[] assetChecks =
+            {
+                "meteoricexpansion:entities/air/meteor.json",
+                "meteoricexpansion:entities/air/showermeteor.json",
+                "meteoricexpansion:textures/block/rockash.png",
+                "meteoricexpansion:shapes/entity/meteor.json"
+            };
+
+            foreach (string assetPath in assetChecks)
+            {
+                var asset = api.Assets.TryGet(assetPath);
+
+                api.Logger.Warning(
+                    "[MeteoricExpansion DEBUG] Asset check: "
+                    + assetPath
+                    + " => "
+                    + (asset != null)
+                );
+            }
+
+            api.Logger.Warning(
+                "[MeteoricExpansion DEBUG] Total entity types loaded: "
+                + api.World.EntityTypes.Count
+            );
+
+            foreach (var entity in api.World.EntityTypes)
+            {
+                if (
+                    entity.Code?.Domain == "meteoricexpansion" ||
+                    entity.Code?.Path?.Contains("meteor") == true
+                )
+                {
+                    api.Logger.Warning(
+                        "[MeteoricExpansion DEBUG] ENTITY REGISTERED => code="
+                        + entity.Code
+                        + " class="
+                        + entity.Class
+                    );
+                }
+            }
+
+            api.Logger.Warning("========== END METEORIC DEBUG ==========");
+
 
             Initialize(api);
         }
@@ -66,7 +133,22 @@ namespace MeteoricExpansion.Systems
                 {
                     int playerToSpawnOn = SpawnNearPlayer();
 
-                    EntityProperties entityType = ServerAPI.World.GetEntityType(new AssetLocation("meteoricexpansion", GetRandomEntityCode()));
+                    string entityCode = GetRandomEntityCode();
+
+                    if (entityCode == null)
+                    {
+                        return;
+                    }
+
+                    EntityProperties entityType = ServerAPI.World.GetEntityType(
+                        new AssetLocation("meteoricexpansion", entityCode)
+                    );
+
+                    if (entityType == null)
+                    {
+                        ServerAPI.Logger.Warning("[MeteoricExpansion] Entity type not found: " + entityCode);
+                        return;
+                    }
                     EntityFallingMeteor entity = (EntityFallingMeteor)ServerAPI.World.ClassRegistry.CreateEntity(entityType);
                     EntityPos entityPos = new EntityPos(ServerAPI.World.AllOnlinePlayers[playerToSpawnOn].Entity.Pos.X + GetSpawnOffset(), ServerAPI.WorldManager.MapSizeY - 10, ServerAPI.World.AllOnlinePlayers[playerToSpawnOn].Entity.Pos.Z + GetSpawnOffset());
 

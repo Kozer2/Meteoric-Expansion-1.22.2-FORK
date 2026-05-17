@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VM7DsmiuShA=",
+  "dgSpecHash": "OcBp9nbbevs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion\\meteoricexpansion.csproj",
+  "projectFilePath": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion-1.22.2-FORK\\meteoricexpansion.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Owner\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Owner\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512"
@@ -12,9 +12,9 @@
       "code": "NU1510",
       "level": "Warning",
       "message": "PackageReference Microsoft.CSharp will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion\\meteoricexpansion.csproj",
+      "projectPath": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion-1.22.2-FORK\\meteoricexpansion.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion\\meteoricexpansion.csproj",
+      "filePath": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion-1.22.2-FORK\\meteoricexpansion.csproj",
       "libraryId": "Microsoft.CSharp",
       "targetGraphs": [
         "net10.0"

@@ -17,24 +17,65 @@ namespace MeteoricExpansion
         }
         public override void StartServerSide(ICoreServerAPI api)
         {
-            /*
+
             base.StartServerSide(api);
             //-- Registers a command that will spawn a random meteor 10 blocks above the player --//
             api.RegisterCommand("fallingmeteor", "Spawns a meteor for testing purposes.", "",
             (IServerPlayer player, int groupId, CmdArgs args) =>
             {
-                EntityProperties entityType = api.World.GetEntityType(new AssetLocation("meteoricexpansion", "meteor-bismuthinite-andesite"));
-                EntityFallingMeteor entity = (EntityFallingMeteor)api.World.ClassRegistry.CreateEntity(entityType);
-                EntityPos entityPos = new EntityPos(player.Entity.Pos.X, api.WorldManager.MapSizeY - 10, player.Entity.Pos.Z);
+                if (player == null)
+                {
+                    api.Logger.Error("[MeteoricExpansion] /fallingmeteor must be run by an in-game player.");
+                    return;
+                }
+                AssetLocation code = new AssetLocation(
+                    "meteoricexpansion",
+                    "meteor-bismuthinite-andesite"
+                );
+
+                var asset = api.Assets.TryGet("meteoricexpansion:entities/air/meteor.json");
+                api.Logger.Warning("[MeteoricExpansion DEBUG] meteor asset found: " + (asset != null));
+
+
+                api.Logger.Warning("[MeteoricExpansion DEBUG] Assembly location: " + typeof(RegisterCommands).Assembly.Location);
+
+                EntityProperties entityType = api.World.GetEntityType(code);
+
+                if (entityType == null)
+                {
+                    api.Logger.Error("[MeteoricExpansion] Could not find entity type: " + code);
+
+                    foreach (var entityInfo in api.World.EntityTypes)
+                    {
+                        if (entityInfo.Code?.Path?.Contains("meteor") == true ||
+                            entityInfo.Code?.Domain == "meteoricexpansion")
+                        {
+                            api.Logger.Warning(
+                                "[MeteoricExpansion DEBUG] registered code=" + entityInfo.Code +
+                                " class=" + entityInfo.Class
+                            );
+                        }
+                    }
+
+                    return;
+                }
+
+                EntityFallingMeteor entity =
+                    (EntityFallingMeteor)api.World.ClassRegistry.CreateEntity(entityType);
+
+                EntityPos entityPos = new EntityPos(
+                    player.Entity.Pos.X,
+                    api.WorldManager.MapSizeY - 10,
+                    player.Entity.Pos.Z
+                );
 
                 entity.Pos.SetPos(entityPos);
                 entity.Pos.SetFrom(entity.Pos);
 
                 api.World.SpawnEntity(entity);
 
-                System.Diagnostics.Debug.WriteLine("Spawned at: " + entity.Pos);
-                System.Diagnostics.Debug.WriteLine("Player at: " + player.Entity.Pos);
-                
+                api.Logger.Warning("[MeteoricExpansion] Spawned test meteor at: " + entity.Pos);
+
             }, Privilege.controlserver);
             //-- Registers a command that will spawn a random meteor 10 blocks above the player --//
             api.RegisterCommand("showermeteor", "Spawns a meteor for testing purposes.", "",
@@ -67,7 +108,8 @@ namespace MeteoricExpansion
                     int craterRadius = 3;
 
                     blockAccessor.WalkBlocks(new BlockPos(centerPos.X - craterRadius, centerPos.Y - craterRadius, centerPos.Z - craterRadius),
-                        new BlockPos(centerPos.X + craterRadius, centerPos.Y + craterRadius, centerPos.Z + craterRadius), (block, xPos, yPos, zPos) => {
+                        new BlockPos(centerPos.X + craterRadius, centerPos.Y + craterRadius, centerPos.Z + craterRadius), (block, xPos, yPos, zPos) =>
+                        {
                             BlockPos blockPos = new BlockPos(xPos, yPos, zPos);
 
                             if (blockPos.DistanceTo(centerPos.ToBlockPos()) < craterRadius)
@@ -79,7 +121,7 @@ namespace MeteoricExpansion
 
                     blockAccessor.Commit();
                 }, Privilege.controlserver);
-            */
+
         }
     }
 }

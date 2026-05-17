@@ -5,11 +5,16 @@ namespace MeteoricExpansion.EntityRenderers
 {
     class RegisterEntityRenderer : ModSystem
     {
+        //public override bool ShouldLoad(EnumAppSide side)
+        //{
+        //    return false;
+        //}
+
         public override void StartClientSide(ICoreClientAPI api)
         {
             base.StartClientSide(api);
 
-            api.RegisterEntityRendererClass("MeteorRenderer", typeof(MeteorRenderer));
+            // api.RegisterEntityRendererClass("MeteorRenderer", typeof(MeteorRenderer));
         }
     }
 }

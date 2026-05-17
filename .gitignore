@@ -1,0 +1,6 @@
+
+.vs/
+release/
+verify/
+checkzip/
+*.zip

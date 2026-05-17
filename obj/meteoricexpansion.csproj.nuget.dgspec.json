@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion\\meteoricexpansion.csproj": {}
+    "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion-1.22.2-FORK\\meteoricexpansion.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion\\meteoricexpansion.csproj": {
+    "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion-1.22.2-FORK\\meteoricexpansion.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion\\meteoricexpansion.csproj",
+        "projectUniqueName": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion-1.22.2-FORK\\meteoricexpansion.csproj",
         "projectName": "meteoricexpansion",
-        "projectPath": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion\\meteoricexpansion.csproj",
+        "projectPath": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion-1.22.2-FORK\\meteoricexpansion.csproj",
         "packagesPath": "C:\\Users\\Owner\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion\\obj\\",
+        "outputPath": "C:\\Users\\Owner\\source\\repos\\Meteoric-Expansion-1.22.2-FORK\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
