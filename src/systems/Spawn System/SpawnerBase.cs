@@ -29,6 +29,19 @@ namespace MeteoricExpansion.Systems
         {
             base.StartServerSide(api);
 
+            foreach (var entity in api.World.EntityTypes)
+            {
+                if (entity.Code?.Domain == "meteoricexpansion")
+                {
+                    api.Logger.Warning(
+                        "[MeteoricExpansion] Registered entity: "
+                        + entity.Code
+                        + " class="
+                        + entity.Class
+                    );
+                }
+            }
+
             Initialize(api);
         }
         protected virtual void Initialize(ICoreServerAPI sApi)
@@ -51,7 +64,7 @@ namespace MeteoricExpansion.Systems
 
         protected string[] GetEntityCodes()
         {
-            return GetEntityCodes(EntityTypeToSpawn.ToString());
+            return GetEntityCodes(EntityTypeToSpawn.Name);
         }
         protected string[] GetEntityCodes(string ofType)
         {
@@ -71,7 +84,14 @@ namespace MeteoricExpansion.Systems
         /// <returns></returns>
         protected MeteorBase GenerateEntity()
         {
-            return GenerateEntity(GetRandomEntityCode());
+            string entityCode = GetRandomEntityCode();
+
+            if (entityCode == null)
+            {
+                return null;
+            }
+
+            return GenerateEntity(entityCode);
         }
         protected MeteorBase GenerateEntity(string entityCode)
         {
@@ -91,9 +111,15 @@ namespace MeteoricExpansion.Systems
         protected string GetRandomEntityCode()
         {
             string[] possibleCodes = GetEntityCodes();
-            string chosenCode = possibleCodes[SpawnerRand.Next(0, possibleCodes.Length)];
 
-            return chosenCode;
+            if (possibleCodes == null || possibleCodes.Length == 0)
+            {
+                ServerAPI.Logger.Warning("[MeteoricExpansion] No entity codes returned by GetEntityCodes(). Skipping spawn.");
+                return null;
+            }
+
+            int index = SpawnerRand.Next(possibleCodes.Length);
+            return possibleCodes[index];
         }
         protected int SpawnNearPlayer()
         {
@@ -142,9 +168,15 @@ namespace MeteoricExpansion.Systems
         }
         private List<EntityProperties> FindAllEntitiesOfType(string entityClass)
         {
-            return ServerAPI.World.EntityTypes.FindAll(entity => { 
-                if (entity.Class == EntityTypeToSpawn.Name) return true; return false; 
-            });
+            var found = ServerAPI.World.EntityTypes.FindAll(entity =>
+                entity.Class == entityClass
+            );
+
+            ServerAPI.Logger.Warning(
+                "[MeteoricExpansion] Searching entity class '" + entityClass + "' found " + found.Count + " matches."
+            );
+
+            return found;
         }
     }
 }

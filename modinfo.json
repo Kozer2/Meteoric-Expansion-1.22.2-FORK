@@ -5,7 +5,7 @@
   "authors": [ "Taska Raine", "Kozer - 1.22 compatibility update" ],
   "translators": [ "xCoiotex", "LordOri" ],
   "description": "Meteoric Expansion is a mod that introduces meteors to the skies of Vintage Story. This is an unofficial compatibility update for Vintage Story 1.22.2 / .NET 10.",
-  "version": "1.3.0",
+  "version": "1.3.3",
   "dependencies": {
     "game": "1.22.2"
   }

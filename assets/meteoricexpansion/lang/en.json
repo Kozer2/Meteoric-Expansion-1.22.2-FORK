@@ -306,7 +306,6 @@
 	"block-meteoricrock-peridotite-cooled": "Cracked Meteoric Peridotite",
 	"block-meteoricrock-phyllite-cooled": "Cracked Meteoric Phyllite",
 	"block-meteoricrock-kimberlite-cooled": "Cracked Meteoric Kimberlite",
-	"block-meteoricrock-kimberlite-cooled": "Cracked Meteoric Kimberlite",
 	"block-meteoricrock-whitemarble-cooled": "Cracked Meteoric White Marble",
 	"block-meteoricrock-greenmarble-cooled": "Cracked Meteoric Green Marble",
 	"block-meteoricrock-redmarble-cooled": "Cracked Meteoric Red Marble",
@@ -331,7 +330,6 @@
 	"block-meteoricrock-peridotite-smouldering": "Smouldering Cracked Meteoric Peridotite",
 	"block-meteoricrock-phyllite-smouldering": "Smouldering Cracked Meteoric Phyllite",
 	"block-meteoricrock-kimberlite-smouldering": "Smouldering Cracked Meteoric Kimberlite",
-	"block-meteoricrock-kimberlite-smouldering": "Smouldering Cracked Meteoric Kimberlite",
 	"block-meteoricrock-whitemarble-smouldering": "Smouldering Cracked Meteoric White Marble",
 	"block-meteoricrock-greenmarble-smouldering": "Smouldering Cracked Meteoric Green Marble",
 	"block-meteoricrock-redmarble-smouldering": "Smouldering Cracked Meteoric Red Marble",
@@ -343,5 +341,5 @@
 	"block-meteoricrock-suevite-smouldering": "Smouldering Cracked Meteoric Suevite",
 
 	"block-rockashpile-*": "Ash Pile",
-	"item-rockash": "Ash",
+	"item-rockash": "Ash"
 }

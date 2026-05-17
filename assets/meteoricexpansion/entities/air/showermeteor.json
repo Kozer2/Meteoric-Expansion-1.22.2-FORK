@@ -1,25 +1,50 @@
 ﻿{
-	code: "showermeteor",
-	variantgroups: [
-		{ code: "type", states: ["sodium", "iron", "magnesium", "nitrogen", "potassium", "copper", "lead"] },
+	"code": "showermeteor",
+	"variantgroups": [
+		{
+			"code": "type",
+			"states": [
+				"sodium",
+				"iron",
+				"magnesium",
+				"nitrogen",
+				"potassium",
+				"copper",
+				"lead"
+			]
+		}
 	],
-	class: "EntityShowerMeteor",
-	habitat: "air",
-	client: {
-		renderer: "Shape",
-		shape: { base: "entity/empty" },
-		size: 1,
-		behaviors: [
-		{ code: "interpolateposition" },
-		],
-	},
-	server: {
-		behaviors: [
-		{ code: "despawn", minSeconds: 10 },
-		{ code: "ShowerMeteorMotion", 
-			horizontalSpeed: { min: 20, max: 50 },
-			verticalSpeed: { min: 2, max: 20 }
+	"class": "EntityShowerMeteor",
+	"habitat": "air",
+	"client": {
+		"renderer": "Shape",
+		"shape": {
+			"base": "entity/empty"
 		},
+		"size": 1,
+		"behaviors": [
+			{
+				"code": "interpolateposition"
+			}
 		]
 	},
+	"server": {
+		"behaviors": [
+			{
+				"code": "despawn",
+				"minSeconds": 10
+			},
+			{
+				"code": "ShowerMeteorMotion",
+				"horizontalSpeed": {
+					"min": 20,
+					"max": 50
+				},
+				"verticalSpeed": {
+					"min": 2,
+					"max": 20
+				}
+			}
+		]
+	}
 }

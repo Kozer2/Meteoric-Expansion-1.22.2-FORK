@@ -75,6 +75,12 @@ namespace MeteoricExpansion.Systems
                 if (ServerAPI.World.AllOnlinePlayers.Length > 0)
                 {
                     MeteorCode = GetRandomEntityCode();
+
+                    if (MeteorCode == null)
+                    {
+                        return;
+                    }
+
                     ShowerTranslation = DetermineTranslation();
 
                     int numShowerMeteors = SpawnerRand.Next(0, ServerAPI.World.Config.GetInt("MaxMeteorsPerShower"));

@@ -66,7 +66,19 @@ namespace MeteoricExpansion.Systems
                 {
                     int playerToSpawnOn = SpawnNearPlayer();
 
-                    EntityProperties entityType = ServerAPI.World.GetEntityType(new AssetLocation("meteoricexpansion", GetRandomEntityCode()));
+                    string entityCode = GetRandomEntityCode();
+
+                    if (entityCode == null)
+                    {
+                        return;
+                    }
+
+                    EntityProperties entityType = ServerAPI.World.GetEntityType(new AssetLocation("meteoricexpansion", entityCode));
+                    if (entityType == null)
+                    {
+                        ServerAPI.Logger.Warning("[MeteoricExpansion] Could not find entity type for code: " + entityCode);
+                        return;
+                    }
                     EntityFallingMeteor entity = (EntityFallingMeteor)ServerAPI.World.ClassRegistry.CreateEntity(entityType);
                     EntityPos entityPos = new EntityPos(ServerAPI.World.AllOnlinePlayers[playerToSpawnOn].Entity.Pos.X + GetSpawnOffset(), ServerAPI.WorldManager.MapSizeY - 10, ServerAPI.World.AllOnlinePlayers[playerToSpawnOn].Entity.Pos.Z + GetSpawnOffset());
 
