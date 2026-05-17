@@ -31,11 +31,6 @@ namespace MeteoricExpansion.Systems
         private string MeteorCode { get; set; }
         private bool ConfigDisableShowers { get; set; }
 
-        //public override bool ShouldLoad(EnumAppSide side)
-        //{
-        //    return side == EnumAppSide.Server;
-        //}
-
         public override void StartServerSide(ICoreServerAPI api)
         {
             base.StartServerSide(api);

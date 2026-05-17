@@ -23,21 +23,7 @@ namespace MeteoricExpansion
             api.RegisterCommand("fallingmeteor", "Spawns a meteor for testing purposes.", "",
             (IServerPlayer player, int groupId, CmdArgs args) =>
             {
-                if (player == null)
-                {
-                    api.Logger.Error("[MeteoricExpansion] /fallingmeteor must be run by an in-game player.");
-                    return;
-                }
-                AssetLocation code = new AssetLocation(
-                    "meteoricexpansion",
-                    "meteor-bismuthinite-andesite"
-                );
-
-                var asset = api.Assets.TryGet("meteoricexpansion:entities/air/meteor.json");
-                api.Logger.Warning("[MeteoricExpansion DEBUG] meteor asset found: " + (asset != null));
-
-
-                api.Logger.Warning("[MeteoricExpansion DEBUG] Assembly location: " + typeof(RegisterCommands).Assembly.Location);
+                AssetLocation code = new AssetLocation("meteoricexpansion", "meteor-bismuthinite-andesite");
 
                 EntityProperties entityType = api.World.GetEntityType(code);
 
@@ -45,23 +31,18 @@ namespace MeteoricExpansion
                 {
                     api.Logger.Error("[MeteoricExpansion] Could not find entity type: " + code);
 
-                    foreach (var entityInfo in api.World.EntityTypes)
+                    foreach (var entityProp in api.World.EntityTypes)
                     {
-                        if (entityInfo.Code?.Path?.Contains("meteor") == true ||
-                            entityInfo.Code?.Domain == "meteoricexpansion")
+                        if (entityProp.Code?.Domain == "meteoricexpansion")
                         {
-                            api.Logger.Warning(
-                                "[MeteoricExpansion DEBUG] registered code=" + entityInfo.Code +
-                                " class=" + entityInfo.Class
-                            );
+                            api.Logger.Warning("[MeteoricExpansion] Registered entity: " + entityProp.Code + " class=" + entityProp.Class);
                         }
                     }
 
                     return;
                 }
 
-                EntityFallingMeteor entity =
-                    (EntityFallingMeteor)api.World.ClassRegistry.CreateEntity(entityType);
+                EntityFallingMeteor entity = (EntityFallingMeteor)api.World.ClassRegistry.CreateEntity(entityType);
 
                 EntityPos entityPos = new EntityPos(
                     player.Entity.Pos.X,
