@@ -7,7 +7,7 @@ $ModInfo = Get-Content (Join-Path $Repo "modinfo.json") | ConvertFrom-Json
 $Version = $ModInfo.version
 $ModId = $ModInfo.modid
 
-$Zip = Join-Path $Repo "$ModId`_$Version-test.zip"
+$Zip = Join-Path $Repo "$ModId`_$Version.zip"
 
 $DllOut = "C:\Projects\VintageStory\Mods\Debug\meteoricexpansion"
 
