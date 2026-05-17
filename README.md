@@ -100,7 +100,7 @@ Further config details can be found by opening the mod ZIP and reading the readm
 ### Releases
 
 ### Vintage Story 1.22.2+
-[Version 1.3.3](https://github.com/Kozer2/Meteoric-Expansion-1.22.2-FORK/releases/tag/v1.3.0-vs1.22.2)
+[Version 1.3.3](https://github.com/Kozer2/Meteoric-Expansion-1.22.2-FORK/releases/tag/v1.3.3-vs1.22.2)
 
 ### Vintage Story 1.19.0+
 [Version 1.2.5](https://github.com/TaskaRaine/Meteoric-Expansion/releases/download/1.2.5/MeteoricExpansion_v1.2.5.zip)
